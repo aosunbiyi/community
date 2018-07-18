@@ -1,0 +1,23 @@
+import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
+import { ForumsService } from "../forums/services/forums.service";
+
+@Component({
+  selector: 'app-chat-list',
+  templateUrl: './chat-list.component.html',
+  styleUrls: ['./chat-list.component.css']
+})
+export class ChatListComponent implements OnInit {
+  users: any[];
+  talkTo: string;
+
+  constructor(private formsService: ForumsService, private router: Router) { }
+
+  ngOnInit() {
+    this.users = this.formsService.users;
+  }
+  close() {
+    this.router.navigate([{ outlets: { chat: null } }]);
+  }
+
+}
